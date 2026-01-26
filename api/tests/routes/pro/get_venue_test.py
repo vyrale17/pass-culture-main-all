@@ -2,6 +2,7 @@ import datetime
 
 import pytest
 
+import pcapi.core.categories.subcategories as subcategories
 import pcapi.core.offerers.factories as offerers_factories
 import pcapi.core.offerers.models as offerers_models
 import pcapi.core.offers.factories as offers_factories
@@ -174,6 +175,7 @@ class Returns200Test:
                 "original_image_url": None,
             },
             "id": venue.id,
+            "canDisplayHighlights": True,
             "collectiveAccessInformation": None,
             "collectiveDescription": "Description du lieu",
             "collectiveDomains": [],
@@ -240,6 +242,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
             assert response.status_code == 200
@@ -270,6 +273,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
             assert response.status_code == 200
@@ -307,6 +311,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
             assert response.status_code == 200
@@ -340,6 +345,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
             assert response.status_code == 200
@@ -366,6 +372,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
             assert response.status_code == 200
@@ -395,6 +402,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -438,6 +446,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -472,6 +481,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -510,6 +520,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -540,6 +551,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -572,6 +584,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -600,6 +613,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -625,6 +639,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -654,6 +669,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -681,6 +697,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -737,6 +754,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -786,6 +804,7 @@ class Returns200Test:
         num_queries += 1  # select offer
         num_queries += 1  # venue.hasActiveIndividualOffer
         num_queries += 1  # venue.hasPartnerPage
+        num_queries += 1  # venue.canDisplayHighlights
         venue_id = venue.id
         with testing.assert_num_queries(num_queries):
             response = auth_request.get("/venues/%s" % venue_id)
@@ -801,6 +820,28 @@ class Returns200Test:
         assert response.status_code == 200
 
         assert response.json["isCaledonian"] is True
+
+    @pytest.mark.parametrize(
+        "subcategory_id,can_display_highlights",
+        [
+            (subcategories.EVENEMENT_CINE.id, True),
+            (subcategories.VOD.id, False),
+        ],
+    )
+    def test_venue_can_display_highlights(self, client, subcategory_id, can_display_highlights):
+        user_offerer = offerers_factories.UserOffererFactory(user__email="user.pro@test.com")
+        venue = offerers_factories.VenueFactory(
+            name="Festival du pain au chocolat",
+            managingOfferer=user_offerer.offerer,
+            venueTypeCode=VenueTypeCode.FESTIVAL,
+        )
+        offers_factories.OfferFactory(venue=venue, subcategoryId=subcategory_id)
+
+        auth_request = client.with_session_auth(email=user_offerer.user.email)
+        response = auth_request.get(f"/venues/{venue.id}")
+        assert response.status_code == 200
+
+        assert response.json["canDisplayHighlights"] is can_display_highlights
 
 
 class Returns403Test:

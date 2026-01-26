@@ -88,6 +88,7 @@ export const makeGetVenueResponseModel = <
     publicName: `Nom public de la structure ${override.id}`,
     venueType: makeVenueTypeResponseModel({}),
     visualDisabilityCompliant: false,
+    canDisplayHighlights: false,
   }
 
   return {
