@@ -6,21 +6,18 @@ import type {
 } from '@/apiClient/adage'
 import { apiAdage } from '@/apiClient/api'
 import { useSnackBar } from '@/commons/hooks/useSnackBar'
+import { Button } from '@/design-system/Button/Button'
+import { ButtonColor, ButtonVariant } from '@/design-system/Button/types'
 import fullStarIcon from '@/icons/full-star.svg'
 import strokeStarIcon from '@/icons/stroke-star.svg'
 import { useAdageUser } from '@/pages/AdageIframe/app/hooks/useAdageUser'
 import { isCollectiveOfferTemplate } from '@/pages/AdageIframe/app/types'
-import {
-  ListIconButton,
-  ListIconButtonVariant,
-} from '@/ui-kit/ListIconButton/ListIconButton'
 
 export interface OfferFavoriteButtonProps {
   offer: CollectiveOfferResponseModel | CollectiveOfferTemplateResponseModel
   queryId?: string
   afterFavoriteChange?: (isFavorite: boolean) => void
   isInSuggestions?: boolean
-  className?: string
   viewType?: 'grid' | 'list'
   playlistId?: number
 }
@@ -30,7 +27,6 @@ export const OfferFavoriteButton = ({
   queryId,
   afterFavoriteChange,
   isInSuggestions,
-  className,
   viewType,
   playlistId,
 }: OfferFavoriteButtonProps): JSX.Element => {
@@ -116,13 +112,13 @@ export const OfferFavoriteButton = ({
   const buttonText = `${isFavorite ? 'Supprimer des ' : 'Mettre en '} favoris`
 
   return (
-    <ListIconButton
+    <Button
+      variant={ButtonVariant.SECONDARY}
+      color={ButtonColor.BRAND}
       icon={isFavorite ? fullStarIcon : strokeStarIcon}
-      className={className}
-      dataTestid={`favorite-${isFavorite ? 'active' : 'inactive'}`}
+      data-testid={`favorite-${isFavorite ? 'active' : 'inactive'}`}
       onClick={handleFavoriteClick}
-      variant={ListIconButtonVariant.PRIMARY}
-      tooltipContent={buttonText}
+      tooltip={buttonText}
     />
   )
 }

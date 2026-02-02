@@ -2,10 +2,10 @@
 @use "styles/mixins/_outline.scss" as outline;
 
 .actions-column {
-  place-self: end end;
   display: flex;
-  align-items: center;
+  place-items: center center;
   gap: var(--size-spacing-xs);
+  place-self: center;
 }
 
 .menu {

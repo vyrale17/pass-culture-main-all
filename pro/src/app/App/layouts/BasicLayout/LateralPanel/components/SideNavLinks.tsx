@@ -24,7 +24,6 @@ import {
   selectSelectedPartnerPageId,
 } from '@/commons/store/nav/selector'
 import { getSavedPartnerPageVenueId } from '@/commons/utils/savedPartnerPageVenueId'
-import { EllipsissedText } from '@/components/EllipsissedText/EllipsissedText'
 import { Button } from '@/design-system/Button/Button'
 import {
   ButtonColor,
@@ -41,7 +40,6 @@ import strokeHomeIcon from '@/icons/stroke-home.svg'
 import strokePhoneIcon from '@/icons/stroke-phone.svg'
 import strokeRepaymentIcon from '@/icons/stroke-repayment.svg'
 import strokeTeacherIcon from '@/icons/stroke-teacher.svg'
-import { ButtonLink } from '@/ui-kit/Button/ButtonLink'
 import { DropdownButton } from '@/ui-kit/DropdownButton/DropdownButton'
 
 import { HelpDropdownNavItem } from './HelpDropdownNavItem'
@@ -166,14 +164,23 @@ export const SideNavLinks = ({ isLateralPanelOpen }: SideNavLinksProps) => {
           })}
         >
           {withSwitchVenueFeature && selectedVenue && (
-            <ButtonLink
-              aria-label={`Changer de structure (actuellement sélectionnée : ${selectedVenue.publicName})`}
-              className={styles['nav-links-switch-venue-button']}
-              icon={fullLeftIcon}
-              to="/hub"
-            >
-              <EllipsissedText>{selectedVenue.publicName}</EllipsissedText>
-            </ButtonLink>
+            <div className={styles['nav-links-switch-venue-button']}>
+              <Button
+                as="a"
+                aria-label={`Changer de structure (actuellement sélectionnée : ${selectedVenue.publicName})`}
+                variant={ButtonVariant.SECONDARY}
+                color={ButtonColor.NEUTRAL}
+                icon={fullLeftIcon}
+                to="/hub"
+                label={
+                  selectedVenue.publicName?.length > 20
+                    ? `${selectedVenue.publicName.substring(0, 19)}...`
+                    : selectedVenue.publicName
+                }
+                fullWidth
+                fullHeight
+              />
+            </div>
           )}
 
           <div className={styles['nav-links-create-offer-wrapper']}>
@@ -339,14 +346,14 @@ export const SideNavLinks = ({ isLateralPanelOpen }: SideNavLinksProps) => {
       </ul>
 
       {withSwitchVenueFeature ? (
-        <ul>
-          <div className={styles['nav-links-group']}>
-            <div
-              className={styles['nav-links-last-group-separator']}
-              aria-hidden="true"
-            >
-              <div className={styles['separator-line']} />
-            </div>
+        <div className={styles['nav-links-group']}>
+          <div
+            className={styles['nav-links-last-group-separator']}
+            aria-hidden="true"
+          >
+            <div className={styles['separator-line']} />
+          </div>
+          <ul>
             <li>
               <UserReviewDialog
                 dialogTrigger={
@@ -363,8 +370,8 @@ export const SideNavLinks = ({ isLateralPanelOpen }: SideNavLinksProps) => {
             <li>
               <HelpDropdownNavItem isMobileScreen={isMobileScreen ?? false} />
             </li>
-          </div>
-        </ul>
+          </ul>
+        </div>
       ) : (
         <div className={styles['nav-links-group']}>
           <div

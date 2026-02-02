@@ -4,9 +4,13 @@ import { useLocation } from 'react-router'
 import { useAnalytics } from '@/app/App/analytics/firebase'
 import { Events } from '@/commons/core/FirebaseEvents/constants'
 import { Banner } from '@/design-system/Banner/Banner'
+import { Button } from '@/design-system/Button/Button'
+import {
+  ButtonColor,
+  ButtonSize,
+  ButtonVariant,
+} from '@/design-system/Button/types'
 import fullLinkIcon from '@/icons/full-link.svg'
-import { ButtonLink } from '@/ui-kit/Button/ButtonLink'
-import { ButtonVariant } from '@/ui-kit/Button/types'
 
 import styles from './LegalInfos.module.scss'
 
@@ -28,10 +32,12 @@ export const LegalInfos = ({ className }: LegalInfoProps): JSX.Element => {
           <>
             <p className={styles['legal-infos-paragraph']}>
               En cliquant sur S’inscrire, vous acceptez nos{' '}
-              <ButtonLink
-                variant={ButtonVariant.QUATERNARY}
+              <Button
+                as="a"
+                variant={ButtonVariant.TERTIARY}
+                color={ButtonColor.NEUTRAL}
+                size={ButtonSize.SMALL}
                 icon={fullLinkIcon}
-                className={styles['legal-infos-callout-link']}
                 opensInNewTab
                 isExternal
                 onClick={() =>
@@ -40,33 +46,36 @@ export const LegalInfos = ({ className }: LegalInfoProps): JSX.Element => {
                   })
                 }
                 to="https://pass.culture.fr/cgu-professionnels/"
-              >
-                Conditions générales d’utilisation.
-              </ButtonLink>
+                label="Conditions générales d’utilisation."
+              />
             </p>
             <p className={styles['legal-infos-paragraph']}>
               Pour la gestion de vos données personnelles par la SAS pass
               Culture, vous pouvez consulter la{' '}
-              <ButtonLink
+              <Button
+                as="a"
                 icon={fullLinkIcon}
-                className={styles['legal-infos-callout-link']}
-                variant={ButtonVariant.QUATERNARY}
+                variant={ButtonVariant.TERTIARY}
+                color={ButtonColor.NEUTRAL}
+                size={ButtonSize.SMALL}
                 isExternal
                 opensInNewTab
                 to="https://pass.culture.fr/donnees-personnelles/"
-              >
-                charte des données personnelles
-              </ButtonLink>{' '}
+                label="charte des données personnelles"
+              />
+            </p>
+            <p>
               ou contacter{' '}
-              <ButtonLink
-                variant={ButtonVariant.QUATERNARY}
+              <Button
+                as="a"
+                variant={ButtonVariant.TERTIARY}
+                color={ButtonColor.NEUTRAL}
+                size={ButtonSize.SMALL}
                 icon={fullLinkIcon}
-                className={styles['legal-infos-callout-link']}
                 to={`mailto:${DPOMail}`}
                 isExternal
-              >
-                {DPOMail}
-              </ButtonLink>
+                label={DPOMail}
+              />
               .
             </p>
           </>
