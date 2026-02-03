@@ -577,6 +577,7 @@ describe('<IndividualOfferDetailsScreen />', () => {
 
     expect(api.postOffer).toHaveBeenCalledOnce()
     expect(api.postOffer).toHaveBeenCalledWith({
+      artistOfferLinks: [],
       audioDisabilityCompliant: true,
       description: 'My super description',
       durationMinutes: null,
@@ -645,6 +646,7 @@ describe('<IndividualOfferDetailsScreen />', () => {
 
     expect(api.patchOffer).toHaveBeenCalledOnce()
     expect(api.patchOffer).toHaveBeenCalledWith(12, {
+      artistOfferLinks: [],
       audioDisabilityCompliant: true,
       description: 'My super description',
       durationMinutes: null,
