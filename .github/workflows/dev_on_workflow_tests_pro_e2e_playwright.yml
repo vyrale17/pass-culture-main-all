@@ -42,7 +42,7 @@ jobs:
           node-version-file: "pro/package.json"
 
       - uses: pass-culture/common-workflows/actions/setup-safe-chain@main
-        if: inputs.ENV == 'testing'
+        if: inputs.ENV != 'production'
 
       - name: Install dependencies
         run: yarn install --immutable
@@ -83,6 +83,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          cache: "yarn"
+          cache-dependency-path: "**/yarn.lock"
+          node-version-file: "pro/package.json"
+
+      - uses: pass-culture/common-workflows/actions/setup-safe-chain@main
+        if: inputs.ENV != 'production'
+
       - name: "Authentification to Google"
         uses: "google-github-actions/auth@v3"
         with:
@@ -107,16 +117,6 @@ jobs:
         env:
           PCAPI_UID: 1000
           PCAPI_GID: 1000
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v6
-        with:
-          cache: "yarn"
-          cache-dependency-path: "**/yarn.lock"
-          node-version-file: "pro/package.json"
-
-      - uses: pass-culture/common-workflows/actions/setup-safe-chain@main
-        if: inputs.ENV == 'testing'
 
       - name: Install dependencies
         run: yarn install --immutable
